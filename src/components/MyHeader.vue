@@ -1,11 +1,13 @@
 <template>
     <div class="container-header">
-        <div>Logo</div>
+        <img src="http://vignette1.wikia.nocookie.net/yugiohenespanol/images/a/aa/Yugioh_anime_logo.jpg/revision/latest?cb=20130310042737&path-prefix=es"
+            alt="">
         <h1>Yu-Gi-Oh Api</h1>
     </div>
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -26,10 +28,9 @@ export default {
     align-items: center;
     height: 60px;
 
-    div {
-        background-color: red;
-        height: 40px;
-        width: 100px;
+    img {
+        width: 150px;
+        padding: 20px;
     }
 
     h1 {

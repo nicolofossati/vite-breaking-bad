@@ -1,63 +1,48 @@
 <template>
     <div class="main-container">
+        <select name="" id="">
+            <option v-for="archetype in store.archetypeList">{{ archetype.archetype_name }}</option>
+        </select>
         <div class="main-content">
             <div class="main-header">
-                <h3>Found 39 cards</h3>
-                <!-- https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Alien  -->
+                <h3>Found {{ store.cardsList.length }} cards</h3>
             </div>
             <div class="card-container">
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
-                </div>
-                <div class="card">
-                    <img src="" alt="">
-                    <h4 class="name">PROVA NOME</h4>
-                    <span class="archetype">archetype</span>
+                <div class="card-wrapper" v-for="(card, index) in store.cardsList" :key="index">
+                    <card :image="card.card_images[0].image_url" :name="card.name" :archetype="card.archetype" />
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script></script>
+<script>
+import { store } from '../store.js';
+import Card from './Card.vue';
+
+export default {
+    data() {
+        return {
+            store
+        }
+    },
+    components: {
+        Card
+    }
+}
+</script>
 
 <style scoped lang="scss">
 .main-container {
-    height: calc(100vh - 60px);
     background-color: orange;
     padding: 20px;
+
+    select {
+        margin-left: 5%;
+        margin-bottom: 20px;
+        padding: 10px 5px;
+        border-radius: 5px;
+    }
 }
 
 .main-content {
@@ -70,6 +55,7 @@
 .main-header {
     height: 40px;
     background-color: #212529;
+    margin: 0 10px 0 10px;
 
     h3 {
         color: white;
@@ -77,15 +63,12 @@
 }
 
 .card-container {
-    background-color: #3677b7;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.card {
-    margin: 10px;
-    background-color: white;
-    width: calc(100%/5 - 20px);
+.card-wrapper {
+    display: contents;
 }
 </style>
