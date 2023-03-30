@@ -1,7 +1,7 @@
 <template>
   <div class="load" v-if="store.loader">Caricamento...</div>
   <MyHeader />
-  <MyMain />
+  <MyMain @selected="callToApi" />
 </template>
 
 <script>
@@ -20,11 +20,15 @@ export default {
     MyHeader, MyMain
   }, methods: {
     callToApi() {
-      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+      let url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
+      if (store.archetypeSelected != '') {
+        url += "?archetype=" + store.archetypeSelected;
+      }
+      axios.get(url)
         .then(response => {
           this.store.cardsList = response.data.data;
           this.store.loader = false;
-          console.log(store.archetypeList);
+          console.log(store.archetypeSelected);
         });
     }
   },

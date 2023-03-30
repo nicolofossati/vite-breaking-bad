@@ -1,7 +1,9 @@
 <template>
     <div class="main-container">
-        <select name="" id="">
-            <option v-for="archetype in store.archetypeList">{{ archetype.archetype_name }}</option>
+        <select name="" id="" @change="$emit('selected')" v-model="store.archetypeSelected">
+            <option v-for="archetype in store.archetypeList">
+                {{ archetype.archetype_name }}
+            </option>
         </select>
         <div class="main-content">
             <div class="main-header">
